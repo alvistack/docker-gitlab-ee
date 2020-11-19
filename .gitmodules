@@ -1,0 +1,24 @@
+[submodule "roles/catatonit"]
+	path = roles/catatonit
+	url = https://github.com/alvistack/ansible-role-catatonit.git
+	branch = develop
+[submodule "roles/gitlab_ee"]
+	path = roles/gitlab_ee
+	url = https://github.com/alvistack/ansible-role-gitlab_ee.git
+	branch = develop
+[submodule "roles/gosu"]
+	path = roles/gosu
+	url = https://github.com/alvistack/ansible-role-gosu.git
+	branch = develop
+[submodule "roles/locales"]
+	path = roles/locales
+	url = https://github.com/alvistack/ansible-role-locales.git
+	branch = develop
+[submodule "roles/python"]
+	path = roles/python
+	url = https://github.com/alvistack/ansible-role-python.git
+	branch = develop
+[submodule "roles/timezone"]
+	path = roles/timezone
+	url = https://github.com/alvistack/ansible-role-timezone.git
+	branch = develop

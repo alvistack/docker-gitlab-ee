@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# {{ ansible_managed }}
+
+exec 2>&1
+umask 077
+
+exec /usr/sbin/sshd -eD
