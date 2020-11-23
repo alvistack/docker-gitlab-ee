@@ -1,6 +1,6 @@
 # Docker Image Packaging for GitLab EE
 
-## 13.5.4-XalvistackY - TBC
+## 13.6.0-XalvistackY - TBC
 
 ### Major Changes
 
