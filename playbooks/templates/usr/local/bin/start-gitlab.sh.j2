@@ -2,7 +2,7 @@
 
 # {{ ansible_managed }}
 
-set -o xtrace
+set -euo pipefail
 
 function sigterm_handler() {
     echo "SIGTERM signal received, try to gracefully shutdown all services..."
