@@ -78,6 +78,31 @@ default:
   before_script:
     - *script-git-submodule
 
+build:docker-13.7:
+  <<: *job-packer-build
+  stage: build
+  cache:
+    key: "$CI_PIPELINE_ID-docker-13.7"
+    paths:
+      - packer/*/output-docker/*.tar.gz
+  variables:
+    _PACKER_BUILDER_PROVIDER: "docker"
+    _PACKER_BUILDER_VERSION: "13.7"
+
+deploy:docker-13.7:
+  <<: *job-docker-push
+  stage: deploy
+  cache:
+    key: "$CI_PIPELINE_ID-docker-13.7"
+    paths:
+      - packer/*/output-docker/*.tar.gz
+    policy: pull
+  variables:
+    _PACKER_BUILDER_PROVIDER: "docker"
+    _PACKER_BUILDER_VERSION: "13.7"
+  needs:
+    - build:docker-13.7
+
 build:docker-13.6:
   <<: *job-packer-build
   stage: build
@@ -102,28 +127,3 @@ deploy:docker-13.6:
     _PACKER_BUILDER_VERSION: "13.6"
   needs:
     - build:docker-13.6
-
-build:docker-13.5:
-  <<: *job-packer-build
-  stage: build
-  cache:
-    key: "$CI_PIPELINE_ID-docker-13.5"
-    paths:
-      - packer/*/output-docker/*.tar.gz
-  variables:
-    _PACKER_BUILDER_PROVIDER: "docker"
-    _PACKER_BUILDER_VERSION: "13.5"
-
-deploy:docker-13.5:
-  <<: *job-docker-push
-  stage: deploy
-  cache:
-    key: "$CI_PIPELINE_ID-docker-13.5"
-    paths:
-      - packer/*/output-docker/*.tar.gz
-    policy: pull
-  variables:
-    _PACKER_BUILDER_PROVIDER: "docker"
-    _PACKER_BUILDER_VERSION: "13.5"
-  needs:
-    - build:docker-13.5
