@@ -52,9 +52,6 @@
 
 .script-docker-push: &script-docker-push
   - |
-    cd $CI_PROJECT_DIR/packer/$_PACKER_BUILDER_PROVIDER-$_PACKER_BUILDER_VERSION
-    export _ORG=$CI_PROJECT_NAMESPACE
-    export _IMAGE=$(echo $CI_PROJECT_NAME | sed 's/^docker-//g')-$_PACKER_BUILDER_VERSION
     if [[ -n "$CI_COMMIT_TAG" ]] && [[ "$CI_COMMIT_TAG" =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]]; then
       export _TAG=$CI_COMMIT_TAG
     elif [[ -n "$CI_COMMIT_BRANCH" ]] && [[ "$CI_COMMIT_BRANCH" =~ master ]]; then
@@ -62,6 +59,9 @@
     else
       exit 0
     fi
+    cd $CI_PROJECT_DIR/packer/$_PACKER_BUILDER_PROVIDER-$_PACKER_BUILDER_VERSION
+    export _ORG=$CI_PROJECT_NAMESPACE
+    export _IMAGE=$(echo $CI_PROJECT_NAME | sed 's/^docker-//g')-$_PACKER_BUILDER_VERSION
     docker load --input output-docker/image.tar.gz
     docker push $_ORG/$_IMAGE:latest
     docker tag $_ORG/$_IMAGE:latest $_ORG/$_IMAGE:$_TAG
@@ -84,6 +84,31 @@ default:
   retry: 2
   before_script:
     - *script-git-submodule
+
+build:docker-13.9:
+  <<: *job-packer-build
+  stage: build
+  cache:
+    key: "$CI_PIPELINE_ID-docker-13.9"
+    paths:
+      - packer/*/output-docker/*.tar.gz
+  variables:
+    _PACKER_BUILDER_PROVIDER: "docker"
+    _PACKER_BUILDER_VERSION: "13.9"
+
+deploy:docker-13.9:
+  <<: *job-docker-push
+  stage: deploy
+  cache:
+    key: "$CI_PIPELINE_ID-docker-13.9"
+    paths:
+      - packer/*/output-docker/*.tar.gz
+    policy: pull
+  variables:
+    _PACKER_BUILDER_PROVIDER: "docker"
+    _PACKER_BUILDER_VERSION: "13.9"
+  needs:
+    - build:docker-13.9
 
 build:docker-13.8:
   <<: *job-packer-build
@@ -109,28 +134,3 @@ deploy:docker-13.8:
     _PACKER_BUILDER_VERSION: "13.8"
   needs:
     - build:docker-13.8
-
-build:docker-13.7:
-  <<: *job-packer-build
-  stage: build
-  cache:
-    key: "$CI_PIPELINE_ID-docker-13.7"
-    paths:
-      - packer/*/output-docker/*.tar.gz
-  variables:
-    _PACKER_BUILDER_PROVIDER: "docker"
-    _PACKER_BUILDER_VERSION: "13.7"
-
-deploy:docker-13.7:
-  <<: *job-docker-push
-  stage: deploy
-  cache:
-    key: "$CI_PIPELINE_ID-docker-13.7"
-    paths:
-      - packer/*/output-docker/*.tar.gz
-    policy: pull
-  variables:
-    _PACKER_BUILDER_PROVIDER: "docker"
-    _PACKER_BUILDER_VERSION: "13.7"
-  needs:
-    - build:docker-13.7
