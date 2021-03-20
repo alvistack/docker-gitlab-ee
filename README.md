@@ -41,9 +41,9 @@ Start GitLab EE Server:
         --publish 22:22 \
         --publish 80:80 \
         --publish 443:443 \
-        --env EXTERNAL_URL=http://localhost \
         --volume /etc/gitlab:/etc/gitlab \
         --volume /var/opt/gitlab:/var/opt/gitlab \
+        --env EXTERNAL_URL=http://localhost \
         alvistack/gitlab-ee-13.9
 
 **Success**. GitLab EE is now available on <http://localhost:80>
