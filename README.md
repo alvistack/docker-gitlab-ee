@@ -29,6 +29,23 @@ Based on [Official Ubuntu Docker Image](https://hub.docker.com/_/ubuntu/) with s
 
 For the `VOLUME` directory that is used to store the repository data (amongst other things) we recommend mounting a host directory as a [data volume](https://docs.docker.com/engine/tutorials/dockervolumes/#/data-volumes), or via a named volume if using a docker version \>= 1.9.
 
+Config GitLab EE Server (`/etc/gitlab/config.rb`):
+
+    # GitLab EE external URL.
+    external_url "EXTERNAL_URL"
+    
+    # Prevent Postgres from trying to allocate 25% of total memory
+    postgresql['shared_buffers'] = '1MB'
+    
+    # Disable Prometheus node_exporter inside Docker.
+    node_exporter['enable'] = false
+    
+    # Manage accounts with docker.
+    manage_accounts['enable'] = false
+    
+    # Explicitly disable init detection since we are running on a container.
+    package['detect_init'] = false
+
 Start GitLab EE Server:
 
     # Pull latest image
@@ -43,7 +60,6 @@ Start GitLab EE Server:
         --publish 443:443 \
         --volume /etc/gitlab:/etc/gitlab \
         --volume /var/opt/gitlab:/var/opt/gitlab \
-        --env EXTERNAL_URL=http://localhost \
         alvistack/gitlab-ee-13.9
 
 **Success**. GitLab EE is now available on <http://localhost:80>
