@@ -4,7 +4,11 @@
 
 ### Major Changes
 
-  - Upgrade minimal Ansible community package support to 4.1.0
+## 20210718.1.1 - 2021-07-18
+
+### Major Changes
+
+  - Upgrade minimal Ansible community package support to 4.2.0
 
 ## 20210602.1.1 - 2021-06-02
 
@@ -16,9 +20,12 @@
 
 ### Major Changes
 
-  - Bugfix [ansible-lint `namespace`](https://github.com/ansible-community/ansible-lint/pull/1451)
-  - Bugfix [ansible-lint `no-handler`](https://github.com/ansible-community/ansible-lint/pull/1402)
-  - Bugfix [ansible-lint `unnamed-task`](https://github.com/ansible-community/ansible-lint/pull/1413)
+  - Bugfix [ansible-lint
+    `namespace`](https://github.com/ansible-community/ansible-lint/pull/1451)
+  - Bugfix [ansible-lint
+    `no-handler`](https://github.com/ansible-community/ansible-lint/pull/1402)
+  - Bugfix [ansible-lint
+    `unnamed-task`](https://github.com/ansible-community/ansible-lint/pull/1413)
   - Change GIT tag as per Vagrant Box naming and versioning limitation
 
 ## 13.6.2-4alvistack1 - 2020-12-09
@@ -30,5 +37,7 @@
 ## 13.5.4-4alvistack3 - 2020-11-19
 
   - Ubuntu 20.04 based
-  - Packaging by Packer Docker builder and Ansible provisioner in single layer
-  - Handle `ENTRYPOINT` with [catatonit](https://github.com/openSUSE/catatonit)
+  - Packaging by Packer Docker builder and Ansible provisioner in single
+    layer
+  - Handle `ENTRYPOINT` with
+    [catatonit](https://github.com/openSUSE/catatonit)
