@@ -1,5 +1,7 @@
 # Docker Image Packaging for GitLab EE
 
+<img src="/alvistack.svg" width="75" alt="AlviStack">
+
 [![GitLab pipeline status](https://img.shields.io/gitlab/pipeline/alvistack/docker-gitlab-ee/master)](https://gitlab.com/alvistack/docker-gitlab-ee/-/pipelines)
 [![GitHub release](https://img.shields.io/github/release/alvistack/docker-gitlab-ee.svg)](https://github.com/alvistack/docker-gitlab-ee/releases)
 [![GitHub license](https://img.shields.io/github/license/alvistack/docker-gitlab-ee.svg)](https://github.com/alvistack/docker-gitlab-ee/blob/master/LICENSE)
