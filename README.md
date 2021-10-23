@@ -5,7 +5,7 @@
 [![GitLab pipeline status](https://img.shields.io/gitlab/pipeline/alvistack/docker-gitlab-ee/master)](https://gitlab.com/alvistack/docker-gitlab-ee/-/pipelines)
 [![GitHub release](https://img.shields.io/github/release/alvistack/docker-gitlab-ee.svg)](https://github.com/alvistack/docker-gitlab-ee/releases)
 [![GitHub license](https://img.shields.io/github/license/alvistack/docker-gitlab-ee.svg)](https://github.com/alvistack/docker-gitlab-ee/blob/master/LICENSE)
-[![Docker Pulls](https://img.shields.io/docker/pulls/alvistack/gitlab-ee-14.3.svg)](https://hub.docker.com/r/alvistack/gitlab-ee-14.3)
+[![Docker Pulls](https://img.shields.io/docker/pulls/alvistack/gitlab-ee-14.4.svg)](https://hub.docker.com/r/alvistack/gitlab-ee-14.4)
 
 GitLab is a complete DevOps platform, delivered as a single application. This makes GitLab unique and makes Concurrent DevOps possible, unlocking your organization from the constraints of a pieced together toolchain. Join us for a live Q\&A to learn how GitLab can give you unmatched visibility and higher levels of efficiency in a single application across the DevOps lifecycle.
 
@@ -13,10 +13,10 @@ Learn more about GitLab: <https://about.gitlab.com/>
 
 ## Supported Tags and Respective Packer Template Links
 
+  - [`alvistack/gitlab-ee-14.4`](https://hub.docker.com/r/alvistack/gitlab-ee-14.4)
+      - [`packer/docker-14.4/packer.json`](https://github.com/alvistack/docker-gitlab-ee/blob/master/packer/docker-14.4/packer.json)
   - [`alvistack/gitlab-ee-14.3`](https://hub.docker.com/r/alvistack/gitlab-ee-14.3)
       - [`packer/docker-14.3/packer.json`](https://github.com/alvistack/docker-gitlab-ee/blob/master/packer/docker-14.3/packer.json)
-  - [`alvistack/gitlab-ee-14.2`](https://hub.docker.com/r/alvistack/gitlab-ee-14.2)
-      - [`packer/docker-14.2/packer.json`](https://github.com/alvistack/docker-gitlab-ee/blob/master/packer/docker-14.2/packer.json)
 
 ## Overview
 
@@ -51,7 +51,7 @@ Config GitLab EE Server (`/etc/gitlab/config.rb`):
 Start GitLab EE Server:
 
     # Pull latest image
-    docker pull alvistack/gitlab-ee-14.3
+    docker pull alvistack/gitlab-ee-14.4
     
     # Run as detach
     docker run \
@@ -63,7 +63,7 @@ Start GitLab EE Server:
         --volume /etc/gitlab:/etc/gitlab \
         --volume /var/log/gitlab:/var/log/gitlab \
         --volume /var/opt/gitlab:/var/opt/gitlab \
-        alvistack/gitlab-ee-14.3
+        alvistack/gitlab-ee-14.4
 
 **Success**. GitLab EE is now available on <http://localhost:80>
 
