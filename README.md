@@ -13,6 +13,8 @@ Learn more about GitLab: <https://about.gitlab.com/>
 
 ## Supported Tags and Respective Packer Template Links
 
+  - [`alvistack/gitlab-ce-14.5`](https://hub.docker.com/r/alvistack/gitlab-ce-14.5)
+      - [`packer/docker-14.5/packer.json`](https://github.com/alvistack/docker-gitlab-ce/blob/master/packer/docker-14.5/packer.json)
   - [`alvistack/gitlab-ee-14.4`](https://hub.docker.com/r/alvistack/gitlab-ee-14.4)
       - [`packer/docker-14.4/packer.json`](https://github.com/alvistack/docker-gitlab-ee/blob/master/packer/docker-14.4/packer.json)
   - [`alvistack/gitlab-ee-14.3`](https://hub.docker.com/r/alvistack/gitlab-ee-14.3)
