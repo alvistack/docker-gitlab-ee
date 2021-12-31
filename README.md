@@ -3,7 +3,7 @@
 <img src="/alvistack.svg" width="75" alt="AlviStack">
 
 [![GitLab pipeline status](https://img.shields.io/gitlab/pipeline/alvistack/docker-gitlab-ee/master)](https://gitlab.com/alvistack/docker-gitlab-ee/-/pipelines)
-[![GitHub release](https://img.shields.io/github/release/alvistack/docker-gitlab-ee.svg)](https://github.com/alvistack/docker-gitlab-ee/releases)
+[![GitHub tag](https://img.shields.io/github/tag/alvistack/docker-gitlab-ee.svg)](https://github.com/alvistack/docker-gitlab-ee/tags)
 [![GitHub license](https://img.shields.io/github/license/alvistack/docker-gitlab-ee.svg)](https://github.com/alvistack/docker-gitlab-ee/blob/master/LICENSE)
 [![Docker Pulls](https://img.shields.io/docker/pulls/alvistack/gitlab-ee-14.6.svg)](https://hub.docker.com/r/alvistack/gitlab-ee-14.6)
 
@@ -87,7 +87,7 @@ For evaluations you can use the built-in database that will store its files in t
 
 ### `YYYYMMDD.Y.Z`
 
-Release tags could be find from [GitHub Release](https://github.com/alvistack/docker-gitlab-ee/releases) of this repository. Thus using these tags will ensure you are running the most up to date stable version of this image.
+Release tags could be find from [GitHub Release](https://github.com/alvistack/docker-gitlab-ee/tags) of this repository. Thus using these tags will ensure you are running the most up to date stable version of this image.
 
 ### `YYYYMMDD.0.0`
 
