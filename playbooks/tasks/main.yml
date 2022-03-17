@@ -15,7 +15,7 @@
 # limitations under the License.
 
 - name: groupadd
-  group:
+  ansible.builtin.group:
     name: "{{ item.name }}"
     system: true
     state: "present"
@@ -30,11 +30,11 @@
     - { name: "gitlab-consul" }
 
 - name: useradd
-  user:
+  ansible.builtin.user:
     name: "{{ item.name }}"
-    group: "{{ item.group }}"
+    ansible.builtin.group: "{{ item.group }}"
     home: "{{ item.home }}"
-    shell: "{{ item.shell }}"
+    ansible.builtin.shell: "{{ item.shell }}"
     password: "{{ item.password | default(omit) }}"
     system: true
     create_home: false
@@ -50,10 +50,10 @@
     - { name: "gitlab-consul", group: "gitlab-consul", home: "/var/opt/gitlab/consul", shell: "/bin/sh" }
 
 - name: prepare directories
-  file:
+  ansible.builtin.file:
     dest: "{{ item.dest }}"
     owner: "{{ item.owner | default('root') }}"
-    group: "{{ item.group | default('root') }}"
+    ansible.builtin.group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0755') }}"
     state: "{{ item.state | default('directory') }}"
   loop:
@@ -65,11 +65,11 @@
     - { dest: "/usr/local/bin" }
 
 - name: copy templates
-  template:
+  ansible.builtin.template:
     dest: "{{ item.dest }}"
     src: "{{ item.src | default('./templates' + item.dest + '.j2') }}"
     owner: "{{ item.owner | default('root') }}"
-    group: "{{ item.group | default('root') }}"
+    ansible.builtin.group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
   loop:
     - { dest: "/etc/ssh/sshd_config" }
@@ -80,10 +80,10 @@
     - { dest: "/usr/local/bin/start-gitlab.sh", mode: "0755" }
 
 - name: prepare files
-  file:
+  ansible.builtin.file:
     dest: "{{ item.dest }}"
     owner: "{{ item.owner | default('root') }}"
-    group: "{{ item.group | default('root') }}"
+    ansible.builtin.group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
     state: "{{ item.state | default('file') }}"
   loop:
@@ -95,7 +95,7 @@
     - { dest: "/usr/local/bin/start-gitlab.sh", mode: "0755" }
 
 - name: mkfifo
-  command: mkfifo {{ item.name }}
+  ansible.builtin.command: mkfifo {{ item.name }}
   loop:
     - { name: "/opt/gitlab/sv/sshd/supervise/ok" }
     - { name: "/opt/gitlab/sv/sshd/log/supervise/ok" }
