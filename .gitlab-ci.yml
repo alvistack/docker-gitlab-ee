@@ -104,6 +104,31 @@ default:
   before_script:
     - *script-git-submodule
 
+build:docker-15.2:
+  <<: *job-packer-build
+  stage: build
+  cache:
+    key: "$CI_PIPELINE_ID-docker-15.2"
+    paths:
+      - packer/*/output-docker
+  variables:
+    _PACKER_BUILDER_PROVIDER: "docker"
+    _PACKER_BUILDER_VERSION: "15.2"
+
+deploy:docker-15.2:
+  <<: *job-docker-push
+  stage: deploy
+  cache:
+    key: "$CI_PIPELINE_ID-docker-15.2"
+    paths:
+      - packer/*/output-docker
+    policy: pull
+  variables:
+    _PACKER_BUILDER_PROVIDER: "docker"
+    _PACKER_BUILDER_VERSION: "15.2"
+  needs:
+    - build:docker-15.2
+
 build:docker-15.1:
   <<: *job-packer-build
   stage: build
@@ -128,28 +153,3 @@ deploy:docker-15.1:
     _PACKER_BUILDER_VERSION: "15.1"
   needs:
     - build:docker-15.1
-
-build:docker-15.0:
-  <<: *job-packer-build
-  stage: build
-  cache:
-    key: "$CI_PIPELINE_ID-docker-15.0"
-    paths:
-      - packer/*/output-docker
-  variables:
-    _PACKER_BUILDER_PROVIDER: "docker"
-    _PACKER_BUILDER_VERSION: "15.0"
-
-deploy:docker-15.0:
-  <<: *job-docker-push
-  stage: deploy
-  cache:
-    key: "$CI_PIPELINE_ID-docker-15.0"
-    paths:
-      - packer/*/output-docker
-    policy: pull
-  variables:
-    _PACKER_BUILDER_PROVIDER: "docker"
-    _PACKER_BUILDER_VERSION: "15.0"
-  needs:
-    - build:docker-15.0
