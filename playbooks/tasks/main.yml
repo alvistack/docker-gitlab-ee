@@ -95,7 +95,8 @@
     - { dest: "/usr/local/bin/start-gitlab.sh", mode: "0755" }
 
 - name: mkfifo
-  ansible.builtin.command: mkfifo {{ item.name }}
+  ansible.builtin.command:
+    cmd: mkfifo {{ item.name }}
   loop:
     - { name: "/opt/gitlab/sv/sshd/supervise/ok" }
     - { name: "/opt/gitlab/sv/sshd/log/supervise/ok" }
