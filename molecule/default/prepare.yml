@@ -14,20 +14,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# GitLab EE external URL.
-gitlab_external_url: "http://{{ ansible_default_ipv4.address }}"
-
-# Set to approximately 1/4 of available RAM.
-gitlab_postgresql_shared_buffers: "1MB"
-
-# Disable Prometheus node_exporter inside Docker.
-gitlab_node_exporter_enable: "false"
-
-# Manage accounts with docker.
-gitlab_manage_accounts_enable: "false"
-
-# Explicitly disable init detection since we are running on a container.
-gitlab_package_detect_init: "false"
-
-# Attempt to modify kernel paramaters.
-gitlab_package_modify_kernel_parameters: "false"
+- name: import playbook ../../playbooks/prepare.yml
+  import_playbook: ../../playbooks/prepare.yml

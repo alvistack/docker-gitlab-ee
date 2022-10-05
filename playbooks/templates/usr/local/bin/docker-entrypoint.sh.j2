@@ -4,36 +4,20 @@
 
 set -euxo pipefail
 
-# Prepend executable if command starts with an option
+# Prepend executable if command starts with an option.
 if [ "${1:0:1}" = '-' ]; then
     set -- start-gitlab.sh "$@"
 fi
 
-# Fix permissions
+# Modify Ansible inventory with active hostname.
+if [ "$(id -u)" = '0' ]; then
+    _HOSTNAME="$(hostname -s)"
+    sed -i "s/localhost/$_HOSTNAME/g" /etc/ansible/hosts
+fi
+
+# Verify configuration with Ansible.
 if [ "$1" = 'start-gitlab.sh' ]; then
-    mkdir -p /var/opt/gitlab
-    chown git:git /var/opt/gitlab
-
-    mkdir -p /var/opt/gitlab/nginx
-    chown gitlab-www:gitlab-www /var/opt/gitlab/nginx
-
-    mkdir -p /var/opt/gitlab/redis
-    chown gitlab-redis:gitlab-redis /var/opt/gitlab/redis
-
-    mkdir -p /var/opt/gitlab/postgresql
-    chown gitlab-psql:gitlab-psql /var/opt/gitlab/postgresql
-
-    mkdir -p /var/opt/gitlab/mattermost
-    chown mattermost:mattermost /var/opt/gitlab/mattermost
-
-    mkdir -p /var/opt/gitlab/registry
-    chown registry:registry /var/opt/gitlab/registry
-
-    mkdir -p /var/opt/gitlab/prometheus
-    chown gitlab-prometheus:gitlab-prometheus /var/opt/gitlab/prometheus
-
-    mkdir -p /var/opt/gitlab/consul
-    chown gitlab-consul:gitlab-consul /var/opt/gitlab/consul
+    ansible-playbook /etc/ansible/playbooks/verify.yml
 fi
 
 exec "$@"
