@@ -5,18 +5,18 @@
 [![GitLab pipeline status](https://img.shields.io/gitlab/pipeline/alvistack/docker-gitlab-ee/master)](https://gitlab.com/alvistack/docker-gitlab-ee/-/pipelines)
 [![GitHub tag](https://img.shields.io/github/tag/alvistack/docker-gitlab-ee.svg)](https://github.com/alvistack/docker-gitlab-ee/tags)
 [![GitHub license](https://img.shields.io/github/license/alvistack/docker-gitlab-ee.svg)](https://github.com/alvistack/docker-gitlab-ee/blob/master/LICENSE)
-[![Docker Pulls](https://img.shields.io/docker/pulls/alvistack/gitlab-ee-15.4.svg)](https://hub.docker.com/r/alvistack/gitlab-ee-15.4)
+[![Docker Pulls](https://img.shields.io/docker/pulls/alvistack/gitlab-ee-15.5.svg)](https://hub.docker.com/r/alvistack/gitlab-ee-15.5)
 
-GitLab is a complete DevOps platform, delivered as a single application. This makes GitLab unique and makes Concurrent DevOps possible, unlocking your organization from the constraints of a pieced together toolchain. Join us for a live Q\&A to learn how GitLab can give you unmatched visibility and higher levels of efficiency in a single application across the DevOps lifecycle.
+GitLab is a complete DevOps platform, delivered as a single application. This makes GitLab unique and makes Concurrent DevOps possible, unlocking your organization from the constraints of a pieced together toolchain. Join us for a live Q&A to learn how GitLab can give you unmatched visibility and higher levels of efficiency in a single application across the DevOps lifecycle.
 
 Learn more about GitLab: <https://about.gitlab.com/>
 
 ## Supported Tags and Respective Packer Template Links
 
-  - [`alvistack/gitlab-ee-15.4`](https://hub.docker.com/r/alvistack/gitlab-ee-15.4)
-      - [`packer/docker-15.4/packer.json`](https://github.com/alvistack/docker-gitlab-ee/blob/master/packer/docker-15.4/packer.json)
-  - [`alvistack/gitlab-ee-15.3`](https://hub.docker.com/r/alvistack/gitlab-ee-15.3)
-      - [`packer/docker-15.3/packer.json`](https://github.com/alvistack/docker-gitlab-ee/blob/master/packer/docker-15.3/packer.json)
+-   [`alvistack/gitlab-ee-15.5`](https://hub.docker.com/r/alvistack/gitlab-ee-15.5)
+    -   [`packer/docker-15.5/packer.json`](https://github.com/alvistack/docker-gitlab-ee/blob/master/packer/docker-15.5/packer.json)
+-   [`alvistack/gitlab-ee-15.4`](https://hub.docker.com/r/alvistack/gitlab-ee-15.4)
+    -   [`packer/docker-15.4/packer.json`](https://github.com/alvistack/docker-gitlab-ee/blob/master/packer/docker-15.4/packer.json)
 
 ## Overview
 
@@ -24,8 +24,8 @@ This Docker container makes it easy to get an instance of GitLab EE up and runni
 
 Based on [Official Ubuntu Docker Image](https://hub.docker.com/_/ubuntu/) with some minor hack:
 
-  - Packaging by Packer Docker builder and Ansible provisioner in single layer
-  - Handle `ENTRYPOINT` with [catatonit](https://github.com/openSUSE/catatonit)
+-   Packaging by Packer Docker builder and Ansible provisioner in single layer
+-   Handle `ENTRYPOINT` with [catatonit](https://github.com/openSUSE/catatonit)
 
 ### Quick Start
 
@@ -35,24 +35,24 @@ Config GitLab EE Server (`/etc/gitlab/config.rb`):
 
     # GitLab EE external URL.
     external_url "EXTERNAL_URL"
-    
+
     # Prevent Postgres from trying to allocate 25% of total memory
     postgresql['shared_buffers'] = '1MB'
-    
+
     # Disable Prometheus node_exporter inside Docker.
     node_exporter['enable'] = false
-    
+
     # Manage accounts with docker.
     manage_accounts['enable'] = false
-    
+
     # Explicitly disable init detection since we are running on a container.
     package['detect_init'] = false
 
 Start GitLab EE Server:
 
     # Pull latest image
-    docker pull alvistack/gitlab-ee-15.4
-    
+    docker pull alvistack/gitlab-ee-15.5
+
     # Run as detach
     docker run \
         -itd \
@@ -63,7 +63,7 @@ Start GitLab EE Server:
         --volume /etc/gitlab:/etc/gitlab \
         --volume /var/log/gitlab:/var/log/gitlab \
         --volume /var/opt/gitlab:/var/opt/gitlab \
-        alvistack/gitlab-ee-15.4
+        alvistack/gitlab-ee-15.5
 
 **Success**. GitLab EE is now available on <http://localhost:80>
 
@@ -95,11 +95,11 @@ Version tags ended with `.0.0` are rolling release rebuild by [GitLab pipeline](
 
 ## License
 
-  - Code released under [Apache License 2.0](LICENSE)
-  - Docs released under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
+-   Code released under [Apache License 2.0](LICENSE)
+-   Docs released under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
 
 ## Author Information
 
-  - Wong Hoi Sing Edison
-      - <https://twitter.com/hswong3i>
-      - <https://github.com/hswong3i>
+-   Wong Hoi Sing Edison
+    -   <https://twitter.com/hswong3i>
+    -   <https://github.com/hswong3i>
