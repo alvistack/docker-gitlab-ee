@@ -9,7 +9,7 @@ tag](https://img.shields.io/github/tag/alvistack/docker-gitlab-ee.svg)](https://
 [![GitHub
 license](https://img.shields.io/github/license/alvistack/docker-gitlab-ee.svg)](https://github.com/alvistack/docker-gitlab-ee/blob/master/LICENSE)
 [![Docker
-Pulls](https://img.shields.io/docker/pulls/alvistack/gitlab-ee-16.2.svg)](https://hub.docker.com/r/alvistack/gitlab-ee-16.2)
+Pulls](https://img.shields.io/docker/pulls/alvistack/gitlab-ee-16.3.svg)](https://hub.docker.com/r/alvistack/gitlab-ee-16.3)
 
 GitLab is a complete DevOps platform, delivered as a single application.
 This makes GitLab unique and makes Concurrent DevOps possible, unlocking
@@ -22,10 +22,10 @@ Learn more about GitLab: <https://about.gitlab.com/>
 
 ## Supported Tags and Respective Packer Template Links
 
+-   [`alvistack/gitlab-ee-16.3`](https://hub.docker.com/r/alvistack/gitlab-ee-16.3)
+    -   [`packer/docker-16.3/packer.json`](https://github.com/alvistack/docker-gitlab-ee/blob/master/packer/docker-16.3/packer.json)
 -   [`alvistack/gitlab-ee-16.2`](https://hub.docker.com/r/alvistack/gitlab-ee-16.2)
     -   [`packer/docker-16.2/packer.json`](https://github.com/alvistack/docker-gitlab-ee/blob/master/packer/docker-16.2/packer.json)
--   [`alvistack/gitlab-ee-16.1`](https://hub.docker.com/r/alvistack/gitlab-ee-16.1)
-    -   [`packer/docker-16.1/packer.json`](https://github.com/alvistack/docker-gitlab-ee/blob/master/packer/docker-16.1/packer.json)
 
 ## Overview
 
@@ -67,7 +67,7 @@ Config GitLab EE Server (`/etc/gitlab/config.rb`):
 Start GitLab EE Server:
 
     # Pull latest image
-    docker pull alvistack/gitlab-ee-16.2
+    docker pull alvistack/gitlab-ee-16.3
 
     # Run as detach
     docker run \
@@ -79,7 +79,7 @@ Start GitLab EE Server:
         --volume /etc/gitlab:/etc/gitlab \
         --volume /var/log/gitlab:/var/log/gitlab \
         --volume /var/opt/gitlab:/var/opt/gitlab \
-        alvistack/gitlab-ee-16.2
+        alvistack/gitlab-ee-16.3
 
 **Success**. GitLab EE is now available on <http://localhost:80>
 
