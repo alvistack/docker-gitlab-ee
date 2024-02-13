@@ -21,13 +21,13 @@ gitlab_external_url: "http://{{ ansible_default_ipv4.address }}"
 gitlab_postgresql_shared_buffers: "1MB"
 
 # Disable Prometheus node_exporter inside Docker.
-gitlab_node_exporter_enable: "false"
+gitlab_node_exporter_enable: false
 
 # Manage accounts with docker.
-gitlab_manage_accounts_enable: "false"
+gitlab_manage_accounts_enable: false
 
 # Explicitly disable init detection since we are running on a container.
-gitlab_package_detect_init: "false"
+gitlab_package_detect_init: false
 
 # Attempt to modify kernel paramaters.
-gitlab_package_modify_kernel_parameters: "false"
+gitlab_package_modify_kernel_parameters: false
