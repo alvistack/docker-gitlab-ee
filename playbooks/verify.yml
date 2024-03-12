@@ -1,5 +1,4 @@
 ---
-
 # Copyright 2024 Wong Hoi Sing Edison <hswong3i@pantarei-design.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,7 +19,7 @@
   become: true
   tasks:
     - name: include default variables
-      ansible.builtin.include_vars: "./vars/main.yml"
+      ansible.builtin.include_vars: ./vars/main.yml
 
     - name: include release specific variables
       ansible.builtin.include_vars: "{{ _loop_var }}"
@@ -37,7 +36,7 @@
             - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
             - "{{ ansible_os_family | lower }}.yml"
           paths:
-            - "./vars"
+            - ./vars
           skip: true
 
     - name: prepare directories
@@ -48,26 +47,26 @@
         mode: "{{ item.mode | default('0755') }}"
         state: "{{ item.state | default('directory') }}"
       loop:
-        - { dest: "/etc/gitlab", mode: "0775" }
-        - { dest: "/etc/ssh" }
-        - { dest: "/opt/gitlab/embedded/service/gitlab-rails" }
-        - { dest: "/opt/gitlab/sv/sshd/log/supervise" }
-        - { dest: "/opt/gitlab/sv/sshd/supervise" }
-        - { dest: "/var/log/gitlab" }
-        - { dest: "/var/log/gitlab/alertmanager", owner: "gitlab-prometheus", group: "gitlab-prometheus", mode: "0700" }
-        - { dest: "/var/log/gitlab/postgresql", owner: "gitlab-psql", group: "gitlab-psql", mode: "0700" }
-        - { dest: "/var/log/gitlab/prometheus", owner: "gitlab-prometheus", group: "gitlab-prometheus", mode: "0700" }
-        - { dest: "/var/log/gitlab/redis", owner: "gitlab-redis", group: "git", mode: "0700" }
-        - { dest: "/var/opt/gitlab" }
-        - { dest: "/var/opt/gitlab/alertmanager", owner: "gitlab-prometheus", group: "gitlab-prometheus", mode: "0750" }
-        - { dest: "/var/opt/gitlab/consul", owner: "gitlab-consul", group: "gitlab-consul" }
-        - { dest: "/var/opt/gitlab/gitlab-rails/shared/registry", owner: "registry", group: "git" }
-        - { dest: "/var/opt/gitlab/mattermost", owner: "mattermost", group: "mattermost" }
-        - { dest: "/var/opt/gitlab/nginx", owner: "root", group: "gitlab-www", mode: "0750" }
-        - { dest: "/var/opt/gitlab/nginx/www", owner: "root", group: "root", mode: "0750" }
-        - { dest: "/var/opt/gitlab/postgresql", owner: "gitlab-psql", group: "gitlab-psql" }
-        - { dest: "/var/opt/gitlab/prometheus", owner: "gitlab-prometheus", group: "gitlab-prometheus", mode: "0750" }
-        - { dest: "/var/opt/gitlab/redis", owner: "gitlab-redis", group: "git", mode: "0750" }
+        - { dest: /etc/gitlab, mode: "0775" }
+        - { dest: /etc/ssh }
+        - { dest: /opt/gitlab/embedded/service/gitlab-rails }
+        - { dest: /opt/gitlab/sv/sshd/log/supervise }
+        - { dest: /opt/gitlab/sv/sshd/supervise }
+        - { dest: /var/log/gitlab }
+        - { dest: /var/log/gitlab/alertmanager, owner: gitlab-prometheus, group: gitlab-prometheus, mode: "0700" }
+        - { dest: /var/log/gitlab/postgresql, owner: gitlab-psql, group: gitlab-psql, mode: "0700" }
+        - { dest: /var/log/gitlab/prometheus, owner: gitlab-prometheus, group: gitlab-prometheus, mode: "0700" }
+        - { dest: /var/log/gitlab/redis, owner: gitlab-redis, group: git, mode: "0700" }
+        - { dest: /var/opt/gitlab }
+        - { dest: /var/opt/gitlab/alertmanager, owner: gitlab-prometheus, group: gitlab-prometheus, mode: "0750" }
+        - { dest: /var/opt/gitlab/consul, owner: gitlab-consul, group: gitlab-consul }
+        - { dest: /var/opt/gitlab/gitlab-rails/shared/registry, owner: registry, group: git }
+        - { dest: /var/opt/gitlab/mattermost, owner: mattermost, group: mattermost }
+        - { dest: /var/opt/gitlab/nginx, owner: root, group: gitlab-www, mode: "0750" }
+        - { dest: /var/opt/gitlab/nginx/www, owner: root, group: root, mode: "0750" }
+        - { dest: /var/opt/gitlab/postgresql, owner: gitlab-psql, group: gitlab-psql }
+        - { dest: /var/opt/gitlab/prometheus, owner: gitlab-prometheus, group: gitlab-prometheus, mode: "0750" }
+        - { dest: /var/opt/gitlab/redis, owner: gitlab-redis, group: git, mode: "0750" }
 
     - name: copy templates
       ansible.builtin.template:
@@ -77,11 +76,11 @@
         group: "{{ item.group | default('root') }}"
         mode: "{{ item.mode | default('0644') }}"
       loop:
-        - { dest: "/etc/ssh/sshd_config" }
-        - { dest: "/opt/gitlab/embedded/service/gitlab-rails/INSTALLATION_TYPE" }
-        - { dest: "/opt/gitlab/sv/sshd/log/run", mode: "0755" }
-        - { dest: "/opt/gitlab/sv/sshd/run", mode: "0755" }
-        - { dest: "/usr/local/bin/start-gitlab.sh", mode: "0755" }
+        - { dest: /etc/ssh/sshd_config }
+        - { dest: /opt/gitlab/embedded/service/gitlab-rails/INSTALLATION_TYPE }
+        - { dest: /opt/gitlab/sv/sshd/log/run, mode: "0755" }
+        - { dest: /opt/gitlab/sv/sshd/run, mode: "0755" }
+        - { dest: /usr/local/bin/start-gitlab.sh, mode: "0755" }
 
     - name: prepare files
       ansible.builtin.file:
@@ -91,17 +90,17 @@
         mode: "{{ item.mode | default('0644') }}"
         state: "{{ item.state | default('file') }}"
       loop:
-        - { dest: "/etc/ssh/sshd_config" }
-        - { dest: "/opt/gitlab/embedded/service/gitlab-rails/INSTALLATION_TYPE" }
-        - { dest: "/opt/gitlab/sv/sshd/log/run", mode: "0755" }
-        - { dest: "/opt/gitlab/sv/sshd/run", mode: "0755" }
-        - { dest: "/usr/local/bin/start-gitlab.sh", mode: "0755" }
+        - { dest: /etc/ssh/sshd_config }
+        - { dest: /opt/gitlab/embedded/service/gitlab-rails/INSTALLATION_TYPE }
+        - { dest: /opt/gitlab/sv/sshd/log/run, mode: "0755" }
+        - { dest: /opt/gitlab/sv/sshd/run, mode: "0755" }
+        - { dest: /usr/local/bin/start-gitlab.sh, mode: "0755" }
 
     - name: mkfifo
       ansible.builtin.command:
         cmd: mkfifo {{ item.name }}
       loop:
-        - { name: "/opt/gitlab/sv/sshd/supervise/ok" }
-        - { name: "/opt/gitlab/sv/sshd/log/supervise/ok" }
+        - { name: /opt/gitlab/sv/sshd/supervise/ok }
+        - { name: /opt/gitlab/sv/sshd/log/supervise/ok }
       register: result
       changed_when: result is not succeeded
