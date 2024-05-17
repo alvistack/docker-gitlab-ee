@@ -9,7 +9,7 @@ tag](https://img.shields.io/github/tag/alvistack/docker-gitlab-ee.svg)](https://
 [![GitHub
 license](https://img.shields.io/github/license/alvistack/docker-gitlab-ee.svg)](https://github.com/alvistack/docker-gitlab-ee/blob/master/LICENSE)
 [![Docker
-Pulls](https://img.shields.io/docker/pulls/alvistack/gitlab-ee-16.11.svg)](https://hub.docker.com/r/alvistack/gitlab-ee-16.11)
+Pulls](https://img.shields.io/docker/pulls/alvistack/gitlab-ee-17.0.svg)](https://hub.docker.com/r/alvistack/gitlab-ee-17.0)
 
 GitLab is a complete DevOps platform, delivered as a single application.
 This makes GitLab unique and makes Concurrent DevOps possible, unlocking
@@ -22,10 +22,10 @@ Learn more about GitLab: <https://about.gitlab.com/>
 
 ## Supported Tags and Respective Packer Template Links
 
+-   [`alvistack/gitlab-ee-17.0`](https://hub.docker.com/r/alvistack/gitlab-ee-17.0)
+    -   [`packer/docker-17.0/packer.json`](https://github.com/alvistack/docker-gitlab-ee/blob/master/packer/docker-17.0/packer.json)
 -   [`alvistack/gitlab-ee-16.11`](https://hub.docker.com/r/alvistack/gitlab-ee-16.11)
     -   [`packer/docker-16.11/packer.json`](https://github.com/alvistack/docker-gitlab-ee/blob/master/packer/docker-16.11/packer.json)
--   [`alvistack/gitlab-ee-16.10`](https://hub.docker.com/r/alvistack/gitlab-ee-16.10)
-    -   [`packer/docker-16.10/packer.json`](https://github.com/alvistack/docker-gitlab-ee/blob/master/packer/docker-16.10/packer.json)
 
 ## Overview
 
@@ -67,7 +67,7 @@ Config GitLab EE Server (`/etc/gitlab/config.rb`):
 Start GitLab EE Server:
 
     # Pull latest image
-    docker pull alvistack/gitlab-ee-16.11
+    docker pull alvistack/gitlab-ee-17.0
 
     # Run as detach
     docker run \
@@ -79,7 +79,7 @@ Start GitLab EE Server:
         --volume /etc/gitlab:/etc/gitlab \
         --volume /var/log/gitlab:/var/log/gitlab \
         --volume /var/opt/gitlab:/var/opt/gitlab \
-        alvistack/gitlab-ee-16.11
+        alvistack/gitlab-ee-17.0
 
 **Success**. GitLab EE is now available on <http://localhost:80>
 
