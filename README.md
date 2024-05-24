@@ -22,10 +22,10 @@ Learn more about GitLab: <https://about.gitlab.com/>
 
 ## Supported Tags and Respective Packer Template Links
 
--   [`alvistack/gitlab-ee-17.0`](https://hub.docker.com/r/alvistack/gitlab-ee-17.0)
-    -   [`packer/docker-17.0/packer.json`](https://github.com/alvistack/docker-gitlab-ee/blob/master/packer/docker-17.0/packer.json)
--   [`alvistack/gitlab-ee-16.11`](https://hub.docker.com/r/alvistack/gitlab-ee-16.11)
-    -   [`packer/docker-16.11/packer.json`](https://github.com/alvistack/docker-gitlab-ee/blob/master/packer/docker-16.11/packer.json)
+- [`alvistack/gitlab-ee-17.0`](https://hub.docker.com/r/alvistack/gitlab-ee-17.0)
+  - [`packer/docker-17.0/packer.json`](https://github.com/alvistack/docker-gitlab-ee/blob/master/packer/docker-17.0/packer.json)
+- [`alvistack/gitlab-ee-16.11`](https://hub.docker.com/r/alvistack/gitlab-ee-16.11)
+  - [`packer/docker-16.11/packer.json`](https://github.com/alvistack/docker-gitlab-ee/blob/master/packer/docker-16.11/packer.json)
 
 ## Overview
 
@@ -35,10 +35,10 @@ and running.
 Based on [Official Ubuntu Docker
 Image](https://hub.docker.com/_/ubuntu/) with some minor hack:
 
--   Packaging by Packer Docker builder and Ansible provisioner in single
-    layer
--   Handle `ENTRYPOINT` with
-    [catatonit](https://github.com/openSUSE/catatonit)
+- Packaging by Packer Docker builder and Ansible provisioner in single
+  layer
+- Handle `ENTRYPOINT` with
+  [catatonit](https://github.com/openSUSE/catatonit)
 
 ### Quick Start
 
@@ -124,12 +124,12 @@ latest packages provided by the base image project.
 
 ## License
 
--   Code released under [Apache License 2.0](LICENSE)
--   Docs released under [CC BY
-    4.0](http://creativecommons.org/licenses/by/4.0/)
+- Code released under [Apache License 2.0](LICENSE)
+- Docs released under [CC BY
+  4.0](http://creativecommons.org/licenses/by/4.0/)
 
 ## Author Information
 
--   Wong Hoi Sing Edison
-    -   <https://twitter.com/hswong3i>
-    -   <https://github.com/hswong3i>
+- Wong Hoi Sing Edison
+  - <https://twitter.com/hswong3i>
+  - <https://github.com/hswong3i>
