@@ -134,6 +134,45 @@ default:
     - *script-git-submodule
     - *script-linters
 
+build:gitlab-ee-18.3-docker:
+  <<: *job-packer-build
+  stage: build
+  cache:
+    key: $CI_PIPELINE_ID-gitlab-ee-18.3-docker
+    paths:
+      - packer/*/output-docker
+  variables:
+    _IMAGE: gitlab-ee-18.3
+    _PROVIDER: docker
+
+test:gitlab-ee-18.3-docker:
+  <<: *job-molecule-test
+  stage: test
+  cache:
+    key: $CI_PIPELINE_ID-gitlab-ee-18.3-docker
+    paths:
+      - packer/*/output-docker
+    policy: pull
+  variables:
+    _IMAGE: gitlab-ee-18.3
+    _PROVIDER: docker
+  needs:
+    - build:gitlab-ee-18.3-docker
+
+deploy:gitlab-ee-18.3-docker:
+  <<: *job-docker-push
+  stage: deploy
+  cache:
+    key: $CI_PIPELINE_ID-gitlab-ee-18.3-docker
+    paths:
+      - packer/*/output-docker
+    policy: pull
+  variables:
+    _IMAGE: gitlab-ee-18.3
+    _PROVIDER: docker
+  needs:
+    - test:gitlab-ee-18.3-docker
+
 build:gitlab-ee-18.2-docker:
   <<: *job-packer-build
   stage: build
@@ -172,42 +211,3 @@ deploy:gitlab-ee-18.2-docker:
     _PROVIDER: docker
   needs:
     - test:gitlab-ee-18.2-docker
-
-build:gitlab-ee-18.1-docker:
-  <<: *job-packer-build
-  stage: build
-  cache:
-    key: $CI_PIPELINE_ID-gitlab-ee-18.1-docker
-    paths:
-      - packer/*/output-docker
-  variables:
-    _IMAGE: gitlab-ee-18.1
-    _PROVIDER: docker
-
-test:gitlab-ee-18.1-docker:
-  <<: *job-molecule-test
-  stage: test
-  cache:
-    key: $CI_PIPELINE_ID-gitlab-ee-18.1-docker
-    paths:
-      - packer/*/output-docker
-    policy: pull
-  variables:
-    _IMAGE: gitlab-ee-18.1
-    _PROVIDER: docker
-  needs:
-    - build:gitlab-ee-18.1-docker
-
-deploy:gitlab-ee-18.1-docker:
-  <<: *job-docker-push
-  stage: deploy
-  cache:
-    key: $CI_PIPELINE_ID-gitlab-ee-18.1-docker
-    paths:
-      - packer/*/output-docker
-    policy: pull
-  variables:
-    _IMAGE: gitlab-ee-18.1
-    _PROVIDER: docker
-  needs:
-    - test:gitlab-ee-18.1-docker
