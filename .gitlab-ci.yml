@@ -134,80 +134,80 @@ default:
     - *script-git-submodule
     - *script-linters
 
-build:gitlab-ee-19.2-docker:
+build:gitlab-ee-19.4-docker:
   <<: *job-packer-build
   stage: build
   cache:
-    key: $CI_PIPELINE_ID-gitlab-ee-19.2-docker
+    key: $CI_PIPELINE_ID-gitlab-ee-19.4-docker
     paths:
       - packer/*/output-docker
   variables:
-    _IMAGE: gitlab-ee-19.2
+    _IMAGE: gitlab-ee-19.4
     _PROVIDER: docker
 
-test:gitlab-ee-19.2-docker:
+test:gitlab-ee-19.4-docker:
   <<: *job-molecule-test
   stage: test
   cache:
-    key: $CI_PIPELINE_ID-gitlab-ee-19.2-docker
+    key: $CI_PIPELINE_ID-gitlab-ee-19.4-docker
     paths:
       - packer/*/output-docker
     policy: pull
   variables:
-    _IMAGE: gitlab-ee-19.2
+    _IMAGE: gitlab-ee-19.4
     _PROVIDER: docker
   needs:
-    - build:gitlab-ee-19.2-docker
+    - build:gitlab-ee-19.4-docker
 
-deploy:gitlab-ee-19.2-docker:
+deploy:gitlab-ee-19.4-docker:
   <<: *job-docker-push
   stage: deploy
   cache:
-    key: $CI_PIPELINE_ID-gitlab-ee-19.2-docker
+    key: $CI_PIPELINE_ID-gitlab-ee-19.4-docker
     paths:
       - packer/*/output-docker
     policy: pull
   variables:
-    _IMAGE: gitlab-ee-19.2
+    _IMAGE: gitlab-ee-19.4
     _PROVIDER: docker
   needs:
-    - test:gitlab-ee-19.2-docker
+    - test:gitlab-ee-19.4-docker
 
-build:gitlab-ee-19.1-docker:
+build:gitlab-ee-19.3-docker:
   <<: *job-packer-build
   stage: build
   cache:
-    key: $CI_PIPELINE_ID-gitlab-ee-19.1-docker
+    key: $CI_PIPELINE_ID-gitlab-ee-19.3-docker
     paths:
       - packer/*/output-docker
   variables:
-    _IMAGE: gitlab-ee-19.1
+    _IMAGE: gitlab-ee-19.3
     _PROVIDER: docker
 
-test:gitlab-ee-19.1-docker:
+test:gitlab-ee-19.3-docker:
   <<: *job-molecule-test
   stage: test
   cache:
-    key: $CI_PIPELINE_ID-gitlab-ee-19.1-docker
+    key: $CI_PIPELINE_ID-gitlab-ee-19.3-docker
     paths:
       - packer/*/output-docker
     policy: pull
   variables:
-    _IMAGE: gitlab-ee-19.1
+    _IMAGE: gitlab-ee-19.3
     _PROVIDER: docker
   needs:
-    - build:gitlab-ee-19.1-docker
+    - build:gitlab-ee-19.3-docker
 
-deploy:gitlab-ee-19.1-docker:
+deploy:gitlab-ee-19.3-docker:
   <<: *job-docker-push
   stage: deploy
   cache:
-    key: $CI_PIPELINE_ID-gitlab-ee-19.1-docker
+    key: $CI_PIPELINE_ID-gitlab-ee-19.3-docker
     paths:
       - packer/*/output-docker
     policy: pull
   variables:
-    _IMAGE: gitlab-ee-19.1
+    _IMAGE: gitlab-ee-19.3
     _PROVIDER: docker
   needs:
-    - test:gitlab-ee-19.1-docker
+    - test:gitlab-ee-19.3-docker
